@@ -9,6 +9,9 @@ public class Client {
     private String nom;
     private List<Float> llistaPreus;
 
+    public Client(){this.nom="Anònim";}
+    public Client(String nom) {this.nom=nom;}
+
     public String getNom() {
         return nom;
     }
@@ -27,7 +30,9 @@ public class Client {
 
         // loop, omplim la llista
         int numItems = (int) (Math.random() * 100);
-
+        for (int i = 0; i < numItems; i++) {
+            llistaTemp.add( (float) (Math.random() * 100) );
+        }
         this.llistaPreus = llistaTemp;
     }
 }

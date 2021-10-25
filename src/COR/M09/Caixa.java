@@ -1,11 +1,31 @@
 package COR.M09;
 
-import java.util.concurrent.Callable;
+import java.util.List;
 
-public class Caixa implements Callable<Float> {
+public class Caixa implements Runnable {
+    Client currentClient = null;
+
+    public Caixa(Client currentClient) {
+        this.currentClient = currentClient;
+    }
+
+    public void cobrar (Client client) {
+        //this.cobrar( client.getLlistaPreus() );
+        List<Float> llistaPreus = client.getLlistaPreus();
+        float total = 0.0F;
+        for (Float a:llistaPreus) {
+            System.out.println("Preu: " + a + " €");
+            total += a;
+        }
+        System.out.println("TOTAL COBRAT: " + total + " €");
+    }
+
+    public void cobrar() {
+        this.cobrar(this.currentClient);
+    }
 
     @Override
-    public Float call() throws Exception {
-        return null;
+    public void run() {
+        this.cobrar(this.currentClient);
     }
 }
